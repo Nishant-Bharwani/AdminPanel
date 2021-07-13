@@ -6,6 +6,7 @@ const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role =
 AdminBro.registerAdapter(AdminBroMongoose);
 const Order = require('./models/orders');
 const User = require('./models/admin.users');
+
 /** @type {import('admin-bro').AdminBroOptions} */
 
 const options = {

@@ -8,9 +8,7 @@ const router = require('./routers/orders');
 const app = express();
 const port = 3000 || process.env.PORT;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(router);
+
 
 const run = async() => {
     const connection = await mongoose.connect(`${process.env.MONGODB_HOSTNAME}`, {
@@ -39,6 +37,9 @@ const run = async() => {
     // });
     const adminRouter = buildAdminRouter(admin);
     app.use(admin.options.rootPath, adminRouter);
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(router);
     // AdminBro.registerAdapter(AdminBroMongoose);
     app.listen(port, () => {
         console.log(`Listening at http://localhost:${port}`);

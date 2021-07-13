@@ -2,6 +2,7 @@ const { default: AdminBro } = require('admin-bro');
 // const { buildRouter } = require('admin-bro-expressjs');
 const AdminBroExpressjs = require('admin-bro-expressjs');
 const express = require('express');
+const User = require('./models/admin.users');
 
 
 /**
@@ -22,10 +23,10 @@ const buildAdminRouter = (admin) => {
             const user = await User.findOne({ email })
             if (user) {
                 if (password === user.encryptedPassword) {
-                    return user
+                    return user;
                 }
             }
-            return false
+            return false;
         },
         cookiePassword: 'session Key',
     });
