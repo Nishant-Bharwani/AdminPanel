@@ -11,6 +11,8 @@ const canEditEmp = ({ currentAdmin, record }) => {
 AdminBro.registerAdapter(AdminBroMongoose);
 const Order = require('./models/orders');
 const User = require('./models/admin.users');
+const UserProfile = require('./models/users');
+const Bookings = require('./models/bookings');
 
 /** @type {import('admin-bro').AdminBroOptions} */
 
@@ -58,6 +60,30 @@ const options = {
                 edit: { isAccessible: canModifyUsers },
                 delete: { isAccessible: canModifyUsers },
                 new: { isAccessible: canModifyUsers },
+            }
+        }
+    }, {
+        resource: UserProfile,
+        options: {
+            properties: {
+                ownerId: { isVisible: { edit: false, show: true, list: true, filter: true } }
+            },
+            actions: {
+                edit: { isAccessible: canEditEmp },
+                delete: { isAccessible: canEditEmp },
+                new: { isAccessible: canEditEmp },
+            }
+        }
+    }, {
+        resource: Bookings,
+        options: {
+            properties: {
+                ownerId: { isVisible: { edit: false, show: true, list: true, filter: true } }
+            },
+            actions: {
+                edit: { isAccessible: canEditEmp },
+                delete: { isAccessible: canEditEmp },
+                new: { isAccessible: canEditEmp },
             }
         }
     }]

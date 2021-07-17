@@ -23,26 +23,13 @@ const run = async() => {
 
 
     const admin = new AdminBro(options);
-    // const adminRouter = buildAdminRouter(admin, {
-    //     authenticate: async(email, password) => {
-    //         const user = await User.findOne({ email })
-    //         if (user) {
-    //             if (password === user.encryptedPassword) {
-    //                 return user
-    //             }
-    //         }
-    //         return false
-    //     },
-    //     cookiePassword: 'session Key',
-    // });
     const adminRouter = buildAdminRouter(admin);
     app.use(admin.options.rootPath, adminRouter);
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.use(router);
-    // AdminBro.registerAdapter(AdminBroMongoose);
     app.listen(port, () => {
-        console.log(`Listening at http://localhost:${port}`);
+        console.log(`Admin panel running at http://localhost:${port}/admin`);
     });
 }
 
