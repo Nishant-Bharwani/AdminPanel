@@ -7,11 +7,6 @@ const orderSchema = new mongoose.Schema({
     recieverID: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User Profile',
-        // validate(recieverID) {
-        //     if (recieverID == this.senderID) {
-        //         throw new Error(`Sender and reciever can't be same`);
-        //     }
-        // }
     },
 
     pickupAddress: {
